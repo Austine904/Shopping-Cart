@@ -1,3 +1,32 @@
+
+
+<?php include 'connect.php';
+    if(isset($_POST['add_product'])){
+        $product_name=$_POST['product_name'];
+        $product_price=$_POST['product_price'];
+        $product_image=$_FILES['product_image']['name'];
+        $product_image_temp_name=$_FILES['product_image']['tmp_name'];
+        $product_image_folder='images/'.$product_image;
+
+        $insert_query=mysqli_query($conn, "INSERT into products(name,price,image) values('$product_name','$product_price','$product_image')") or die("insert query failed");
+
+        if($insert_query){
+            move_uploaded_file($product_image_temp_name,$product_image_folder);
+            echo "Product inserted Successfully";
+        }else{
+            echo "Product Insert unsuccessful";
+        }
+
+
+    }
+
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,24 +41,22 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
-    <!--header -->
-    <header class="header">
-    <div class="header_body">
-        <a href="index.php" class="logo">Mellow SuperMarket</a>
-        <nav class="navbar">
-            <a href="">Add Product</a>
-            <a href="">View Product</a>
-            <a href="">Shop It</a>
-        </nav>
+    <!-- include header -->
+    <?php include('header.php')?>
 
-        <!-- shopping cart Icon -->
-         <a href="" class="cart"><i class="fa-solid fa-cart-shopping"></i><span><sup>3</sup></span></a>
-         <!-- <div id="menu_btn" class="fas fa-bars"></div> -->
-
-
+    <!-- form section-->
+    <div class="container">
+     <section>
+        <h3 class="heading">Add Products</h3>
+        <form action="" class="add_product" method="post" enctype="multipart/form-data">
+            <input type="text" name="product_name" placeholder="Enter Product Name" class="input_fields" required>
+            <input type="number" name="product_price" min="0" placeholder="Enter Price" class="input_fields" required>
+            <input type="file" name="product_image" class="input_fields" required accept="image/png, image/jpg, image/jpeg">
+            <input type="submit" name="add_product" class="submit_btn" value="Add Product">
+        </form>
+     </section>
     </div>
-    </header>
-
+    
 <!-- js file -->
  <script src="js/script.js"></script>
 </body>
