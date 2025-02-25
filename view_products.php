@@ -53,7 +53,7 @@
                                         <td><?php echo $row['quantity']?></td>
                                         <td><a href="delete.php?delete=<?php echo $row['id']?>" class="delete_product_btn" onclick="return confirm('Are you sure you want to delete the product?')">
                                             <i class="fas fa-trash"></i></a>
-                                        <a href="update.php?edit=<?php echo $row['id'] ?>" class="edit_product_btn">
+                                        <a href="update.php?edit=<?php echo $row['id']?>" class="edit_product_btn">
                                             <i class="fas fa-edit"></i></a>
                                         </td>
                                     </tr>
