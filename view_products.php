@@ -78,8 +78,5 @@
             </table>
         </section>
       </div>
-
-
-<h1>View Products</h1>
 </body>
 </html>
